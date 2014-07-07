@@ -1,0 +1,9 @@
+# Window list at the bottom. hostname, centered tabs and redmarked active windows:
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+# chdir ~/steeletrap/thehuntingproject/www/thefieldjournal
+screen -t "project_0" 1 
+screen -t "project_1" 2 
+
+# Set a large scrollback buffer
+defscrollback 32000
