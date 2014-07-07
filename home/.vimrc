@@ -32,6 +32,12 @@ Plugin 'Valloric/MatchTagAlways'
 Plugin 'Lokaltog/vim-easymotion'
 " Fuzzy project search capability: ctrlp
 Plugin 'kien/ctrlp.vim'
+" Add syntax checking
+Bundle 'scrooloose/syntastic'
+" Add multiple cursor selection/editing (Like Sublime Text)
+Plugin 'terryma/vim-multiple-cursors'
+" gcc Command to comment lines
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -72,3 +78,12 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 " END EasyMotion Configuration
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ :set t_Co=256 " 256 colors
+ :set background=light
+ :color github
