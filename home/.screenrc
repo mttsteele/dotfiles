@@ -1,9 +1,15 @@
+# vim: syntax=screen
 # Window list at the bottom. hostname, centered tabs and redmarked active windows:
+# Some Credit:
+# http://blog.aizatto.com/2006/10/08/gnu-screen-tip-multiple-configuration-files/
 hardstatus alwayslastline
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-# chdir ~/steeletrap/thehuntingproject/www/thefieldjournal
-screen -t "project_0" 1 
-screen -t "project_1" 2 
 
-# Set a large scrollback buffer
-defscrollback 32000
+defscrollback 5000
+
+# This is NANOC Project so start the server and open some other smart windows
+screen -t Server 1 bash -i -c "nanoc view && bash"
+screen -t "Prompt" 2
+screen -t "Editor" 3 bash -i -c "vim && bash"
+
+# TODO Add some smarts to handle different types of projects 
