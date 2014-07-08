@@ -26,7 +26,7 @@ Plugin 'tpope/vim-fugitive'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 "
-" Add XML tag match highlighting 
+" Add XML tag match highlighting
 Plugin 'Valloric/MatchTagAlways'
 " Add EasyMotion for fast word jumping
 Plugin 'Lokaltog/vim-easymotion'
@@ -38,6 +38,8 @@ Bundle 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
 " gcc Command to comment lines
 Plugin 'tpope/vim-commentary'
+" Trying vim-airline
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -54,14 +56,62 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCH
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap / /\v
 vnoremap / /\v
-set linebreak
-set tabstop=2
+" Highlight search results
 set hlsearch
-au BufRead,BufNewFile *.twig,*.htpl set syntax=htmljinja
+" Un-highlight on <Space>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+set magic " Explicitly enable regex escape sequences
+set ignorecase
+set smartcase " Makes case-sensitive search when it contains caps
+set incsearch " Highlight results as you type search string
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Line Formatting -- TAB INDENTATION AUTOTAB AUTOINDENTATION LINEBREAK
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set textwidth=80
+set wrap linebreak nolist
+
+set shiftwidth=2
+set tabstop=2
+
+set expandtab " Spaces not tabs
+set smarttab
+
+set autoindent
+set smartindent
+
+set number " Line Numbering
+
+""""""""""""""""""""""""""""""
+" => Status line
+" """"""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+"
+" Format the status line
+" set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" let g:airline_theme="luna"
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FOLDING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN EasyMotion Configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Bi-directional find motion
@@ -77,13 +127,20 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-" END EasyMotion Configuration
 
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- :set t_Co=256 " 256 colors
- :set background=light
- :color github
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256 " 256 colors
+set background=light
+color github
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup filetypedetect
+" Promela
+au BufNewFile,BufRead *.promela,*.prm,*.pml,*.pt		setf promela
+augroup END
