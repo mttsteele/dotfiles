@@ -40,6 +40,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 " Trying vim-airline
 Plugin 'bling/vim-airline'
+" Adding Vim-git for added features to fugitive
+Plugin 'tpope/vim-git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
